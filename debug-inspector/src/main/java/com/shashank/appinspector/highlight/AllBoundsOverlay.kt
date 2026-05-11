@@ -6,6 +6,7 @@ import android.graphics.Paint
 import android.graphics.Rect
 import android.view.View
 import android.view.ViewGroup
+import android.view.accessibility.AccessibilityNodeInfo
 import com.shashank.appinspector.DebugConfig
 import com.shashank.appinspector.R
 
@@ -52,6 +53,33 @@ internal class AllBoundsOverlay(context: Context) : View(context) {
         getLocationOnScreen(locationOffset)
         collectBounds(root, 0)
         invalidate()
+    }
+
+    fun scanAccessibilityNodes(composeView: View) {
+        viewBounds.clear()
+        getLocationOnScreen(locationOffset)
+        val rootNode = composeView.createAccessibilityNodeInfo() ?: return
+        collectAccessibilityBounds(rootNode, 0)
+        invalidate()
+    }
+
+    private fun collectAccessibilityBounds(node: AccessibilityNodeInfo, depth: Int) {
+        val rect = Rect()
+        node.getBoundsInScreen(rect)
+        if (!rect.isEmpty) {
+            val localRect = Rect(
+                rect.left - locationOffset[0],
+                rect.top - locationOffset[1],
+                rect.right - locationOffset[0],
+                rect.bottom - locationOffset[1]
+            )
+            val label = node.className?.toString()?.substringAfterLast('.') ?: ""
+            viewBounds.add(BoundEntry(localRect, depth % depthColors.size, label))
+        }
+        for (i in 0 until node.childCount) {
+            val child = node.getChild(i) ?: continue
+            collectAccessibilityBounds(child, depth + 1)
+        }
     }
 
     fun clearBounds() {

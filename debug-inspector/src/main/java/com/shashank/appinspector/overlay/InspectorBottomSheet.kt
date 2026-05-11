@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.shashank.appinspector.R
@@ -25,6 +26,7 @@ import com.shashank.appinspector.editor.ViewEditor
 import com.shashank.appinspector.hierarchy.FlatViewNode
 import com.shashank.appinspector.hierarchy.HierarchyTreeController
 import com.shashank.appinspector.hierarchy.ViewHierarchyBuilder
+import com.shashank.appinspector.touch.AccessibilityNodeInspector
 import com.shashank.appinspector.touch.ViewTypeColorResolver
 import com.shashank.appinspector.utils.FragmentOwnerResolver
 import com.shashank.appinspector.utils.ResourceUtils
@@ -52,6 +54,62 @@ internal class InspectorBottomSheet(
         populateContextBanner(contentView)
         populateViewInfo(contentView, view, density, composeInfo)
         setupActions(contentView, view, density)
+
+        dialog.setContentView(contentView)
+        dialog.behavior.peekHeight = (activity.resources.displayMetrics.heightPixels * 0.48).toInt()
+        dialog.show()
+        currentDialog = dialog
+    }
+
+    fun showNodeInfo(nodeInfo: AccessibilityNodeInspector.NodeInfo) {
+        dismiss()
+        if (activity.isDestroyed || activity.isFinishing) return
+        val density = activity.resources.displayMetrics.density
+
+        val dialog = BottomSheetDialog(activity)
+        val contentView = LayoutInflater.from(activity)
+            .inflate(R.layout.layout_inspector_bottom_sheet, null)
+
+        populateContextBanner(contentView)
+
+        val widthDp = (nodeInfo.widthPx / density + 0.5f).toInt()
+        val heightDp = (nodeInfo.heightPx / density + 0.5f).toInt()
+
+        val rows = mutableListOf<Pair<String, String>>()
+        rows += "Type" to nodeInfo.className
+        nodeInfo.text?.let { rows += "Text" to it }
+        nodeInfo.contentDescription?.let { rows += "Description" to it }
+        nodeInfo.resourceId?.let { rows += "ID" to it }
+        rows += "Size" to "${widthDp}dp × ${heightDp}dp (${nodeInfo.widthPx}px × ${nodeInfo.heightPx}px)"
+        rows += "Clickable" to if (nodeInfo.isClickable) "Yes" else "No"
+        rows += "Enabled" to if (nodeInfo.isEnabled) "Yes" else "No"
+
+        contentView.findViewById<TextView>(R.id.di_class_value).text = nodeInfo.className
+        contentView.findViewById<TextView>(R.id.di_id_value).text = nodeInfo.resourceId ?: "—"
+        contentView.findViewById<TextView>(R.id.di_size_value).text =
+            "${widthDp}dp × ${heightDp}dp  (${nodeInfo.widthPx}×${nodeInfo.heightPx}px)"
+
+        val textRow = contentView.findViewById<View>(R.id.di_text_row)
+        val textValue = contentView.findViewById<TextView>(R.id.di_text_value)
+        val displayText = nodeInfo.text ?: nodeInfo.contentDescription
+        if (displayText != null) {
+            textRow.visibility = View.VISIBLE
+            textValue.text = displayText
+        } else {
+            textRow.visibility = View.GONE
+        }
+
+        listOf(R.id.di_margins_row, R.id.di_bg_row, R.id.di_rotation_row,
+            R.id.di_scale_row, R.id.di_fragment_row).forEach { id ->
+            contentView.findViewById<View?>(id)?.visibility = View.GONE
+        }
+
+        contentView.findViewById<TextView>(R.id.di_visibility_value).text =
+            if (nodeInfo.isEnabled) "enabled" else "disabled"
+        contentView.findViewById<TextView>(R.id.di_alpha_value).text =
+            if (nodeInfo.isClickable) "clickable" else "not clickable"
+        contentView.findViewById<TextView>(R.id.di_position_value).text =
+            "(${nodeInfo.boundsInScreen.left}, ${nodeInfo.boundsInScreen.top})"
 
         dialog.setContentView(contentView)
         dialog.behavior.peekHeight = (activity.resources.displayMetrics.heightPixels * 0.48).toInt()

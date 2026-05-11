@@ -44,8 +44,8 @@ In your `app/build.gradle.kts`:
 
 ```kotlin
 dependencies {
-    debugImplementation("com.github.Sudeep152:appinspector:1.0.0")
-    releaseImplementation("com.github.Sudeep152:appinspector-noop:1.0.0")
+    debugImplementation("com.github.Sudeep152.appinspector:appinspector:1.0.0")
+    releaseImplementation("com.github.Sudeep152.appinspector:appinspector-noop:1.0.0")
 }
 ```
 

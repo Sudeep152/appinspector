@@ -107,6 +107,30 @@ internal class HighlightOverlay(context: Context) : View(context) {
         }
     }
 
+    fun highlightScreenRect(screenRect: Rect) {
+        animate().cancel()
+        stopPulse()
+        getLocationOnScreen(locationOffset)
+        highlightRect = Rect(
+            screenRect.left - locationOffset[0],
+            screenRect.top - locationOffset[1],
+            screenRect.right - locationOffset[0],
+            screenRect.bottom - locationOffset[1]
+        )
+        visibility = VISIBLE
+        alpha = 1f
+        scaleX = 0.88f
+        scaleY = 0.88f
+        animate()
+            .scaleX(1f)
+            .scaleY(1f)
+            .setDuration(180)
+            .setInterpolator(OvershootInterpolator(1.5f))
+            .withEndAction { startPulse() }
+            .start()
+        invalidate()
+    }
+
     fun clearHighlight() {
         stopPulse()
         animate()
