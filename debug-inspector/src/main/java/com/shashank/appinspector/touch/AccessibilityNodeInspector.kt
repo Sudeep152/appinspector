@@ -53,7 +53,7 @@ internal object AccessibilityNodeInspector {
         // Compose exposes its semantic tree via accessibilityNodeProvider
         val provider = view.accessibilityNodeProvider
         if (provider != null) {
-            return provider.createAccessibilityNodeInfoForView(View.NO_ID)
+            return provider.createAccessibilityNodeInfo(View.NO_ID)
         }
         return view.createAccessibilityNodeInfo()
     }
