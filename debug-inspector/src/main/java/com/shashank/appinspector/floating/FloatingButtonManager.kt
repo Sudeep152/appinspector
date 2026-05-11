@@ -179,20 +179,19 @@ internal class FloatingButtonManager(private val config: DebugConfig) {
                 return
             }
 
-            val allViews = ViewFinder.findAllViewsAt(contentRoot, screenX, screenY)
-            val isComposeOnly = allViews.isEmpty() ||
-                (allViews.size == 1 && AccessibilityNodeInspector.isComposeOnlyView(allViews.first()))
-
-            if (isComposeOnly) {
-                val composeView = AccessibilityNodeInspector.findComposeViewIn(contentRoot)
-                if (composeView != null) {
-                    val node = AccessibilityNodeInspector.findNodeAt(composeView, screenX, screenY)
-                    if (node != null) {
-                        state.highlightOverlay.highlightScreenRect(node.boundsInScreen)
-                        state.bottomSheet.showNodeInfo(node)
-                    }
+            val composeView = AccessibilityNodeInspector.findComposeViewIn(contentRoot)
+            if (composeView != null) {
+                val node = AccessibilityNodeInspector.findNodeAt(composeView, screenX, screenY)
+                if (node != null) {
+                    state.highlightOverlay.highlightScreenRect(node.boundsInScreen)
+                    state.bottomSheet.showNodeInfo(node)
                 }
-            } else when {
+                return
+            }
+
+            val allViews = ViewFinder.findAllViewsAt(contentRoot, screenX, screenY)
+            when {
+                allViews.isEmpty() -> Unit
                 allViews.size == 1 -> {
                     state.highlightOverlay.highlightView(allViews.first(), isLongPress = false)
                     state.bottomSheet.show(allViews.first())
@@ -208,16 +207,14 @@ internal class FloatingButtonManager(private val config: DebugConfig) {
             val contentRoot = (decorView as? ViewGroup)?.getChildAt(0) ?: decorView
             val deepView = ViewFinder.findViewAt(contentRoot, screenX, screenY)
 
-            if (deepView == null || AccessibilityNodeInspector.isComposeOnlyView(deepView)) {
-                val composeView = AccessibilityNodeInspector.findComposeViewIn(contentRoot)
-                if (composeView != null) {
-                    val node = AccessibilityNodeInspector.findNodeAt(composeView, screenX, screenY)
-                    if (node != null) {
-                        state.highlightOverlay.highlightScreenRect(node.boundsInScreen)
-                        state.bottomSheet.showNodeInfo(node)
-                    }
+            val composeView = AccessibilityNodeInspector.findComposeViewIn(contentRoot)
+            if (composeView != null) {
+                val node = AccessibilityNodeInspector.findNodeAt(composeView, screenX, screenY)
+                if (node != null) {
+                    state.highlightOverlay.highlightScreenRect(node.boundsInScreen)
+                    state.bottomSheet.showNodeInfo(node)
                 }
-            } else {
+            } else if (deepView != null) {
                 state.highlightOverlay.highlightView(deepView, isLongPress = true)
                 state.bottomSheet.show(deepView)
             }
@@ -281,7 +278,8 @@ internal class FloatingButtonManager(private val config: DebugConfig) {
             val root = (decorView as? ViewGroup)?.getChildAt(0) ?: decorView
             val composeView = AccessibilityNodeInspector.findComposeViewIn(root)
             if (composeView != null) {
-                state.boundsOverlay.scanAccessibilityNodes(composeView)
+                val nodes = AccessibilityNodeInspector.getAllNodes(composeView)
+                state.boundsOverlay.showAccessibilityBounds(nodes)
             } else {
                 state.boundsOverlay.scanViews(root)
             }
