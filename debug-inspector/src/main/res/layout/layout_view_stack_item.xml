@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:orientation="vertical"
+    android:paddingHorizontal="12dp"
+    android:paddingVertical="8dp">
+
+    <!-- Row 1: chip + class + ID + size -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <View
+            android:id="@+id/di_stack_chip"
+            android:layout_width="@dimen/debug_inspector_color_chip_size"
+            android:layout_height="@dimen/debug_inspector_color_chip_size"
+            android:background="@drawable/bg_color_chip" />
+
+        <TextView
+            android:id="@+id/di_stack_class"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/debug_inspector_text_primary"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            tools:text="TextView" />
+
+        <TextView
+            android:id="@+id/di_stack_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:ellipsize="end"
+            android:fontFamily="monospace"
+            android:maxLines="1"
+            android:textColor="@color/debug_inspector_primary"
+            android:textSize="11sp"
+            tools:text="#tv_price" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/di_stack_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_badge_count"
+            android:paddingHorizontal="5dp"
+            android:paddingVertical="1dp"
+            android:textColor="@color/debug_inspector_badge_count_text"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            tools:text="40x24"
+            tools:visibility="visible" />
+    </LinearLayout>
+
+    <!-- Row 2: text preview + elevation + alpha -->
+    <TextView
+        android:id="@+id/di_stack_properties"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="2dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/debug_inspector_text_secondary"
+        android:textSize="11sp"
+        android:visibility="gone"
+        tools:text="&quot;₹299&quot; | elevation: 4dp | alpha: 1.0"
+        tools:visibility="visible" />
+
+    <!-- Row 3: fragment owner -->
+    <TextView
+        android:id="@+id/di_stack_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="2dp"
+        android:textColor="@color/debug_inspector_type_compose"
+        android:textSize="11sp"
+        android:visibility="gone"
+        tools:text="CartFragment"
+        tools:visibility="visible" />
+
+</LinearLayout>

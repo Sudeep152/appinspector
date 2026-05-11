@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/debug_inspector_min_touch_target"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingEnd="12dp"
+    android:paddingStart="4dp"
+    android:background="?attr/selectableItemBackground">
+
+    <!-- Depth indent spacer -->
+    <Space
+        android:id="@+id/di_hierarchy_indent"
+        android:layout_width="0dp"
+        android:layout_height="1dp" />
+
+    <!-- Expand/collapse arrow -->
+    <ImageView
+        android:id="@+id/di_hierarchy_arrow"
+        android:layout_width="@dimen/debug_inspector_hierarchy_arrow_size"
+        android:layout_height="@dimen/debug_inspector_hierarchy_arrow_size"
+        android:padding="14dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_chevron_right" />
+
+    <!-- View type color chip -->
+    <View
+        android:id="@+id/di_hierarchy_chip"
+        android:layout_width="@dimen/debug_inspector_color_chip_size"
+        android:layout_height="@dimen/debug_inspector_color_chip_size"
+        android:background="@drawable/bg_color_chip" />
+
+    <!-- Class name -->
+    <TextView
+        android:id="@+id/di_hierarchy_class"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:textColor="@color/debug_inspector_text_primary"
+        android:textSize="13sp"
+        tools:text="TextView" />
+
+    <!-- Resource ID -->
+    <TextView
+        android:id="@+id/di_hierarchy_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:ellipsize="end"
+        android:fontFamily="monospace"
+        android:maxLines="1"
+        android:textColor="@color/debug_inspector_text_secondary"
+        android:textSize="11sp"
+        tools:text="#title" />
+
+    <!-- Child count badge -->
+    <TextView
+        android:id="@+id/di_hierarchy_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:background="@drawable/bg_badge_count"
+        android:paddingHorizontal="5dp"
+        android:paddingVertical="1dp"
+        android:textColor="@color/debug_inspector_badge_count_text"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        tools:text="3"
+        tools:visibility="visible" />
+
+    <!-- GONE badge -->
+    <TextView
+        android:id="@+id/di_hierarchy_gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:background="@drawable/bg_badge_gone"
+        android:paddingHorizontal="5dp"
+        android:paddingVertical="1dp"
+        android:text="@string/debug_inspector_gone_badge"
+        android:textColor="@color/debug_inspector_badge_gone_text"
+        android:textSize="9sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+</LinearLayout>

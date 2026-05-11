@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="debug_inspector_title">View Inspector</string>
+    <string name="debug_inspector_class">Class</string>
+    <string name="debug_inspector_id">ID</string>
+    <string name="debug_inspector_size">Size</string>
+    <string name="debug_inspector_visibility">Visibility</string>
+    <string name="debug_inspector_text">Text</string>
+    <string name="debug_inspector_padding">Padding</string>
+    <string name="debug_inspector_position">Position</string>
+    <string name="debug_inspector_parent">Parent chain</string>
+    <string name="debug_inspector_hierarchy">View Hierarchy</string>
+    <string name="debug_inspector_toggle_visibility">Toggle</string>
+    <string name="debug_inspector_edit_text">Edit</string>
+    <string name="debug_inspector_edit_padding">Edit</string>
+    <string name="debug_inspector_no_id">no-id</string>
+    <string name="debug_inspector_compose_tag">Compose</string>
+    <string name="debug_inspector_hierarchy_title">View Hierarchy Tree</string>
+    <string name="debug_inspector_edit_text_title">Edit Text Content</string>
+    <string name="debug_inspector_edit_padding_title">Edit Padding (dp)</string>
+    <string name="debug_inspector_left">Left</string>
+    <string name="debug_inspector_top">Top</string>
+    <string name="debug_inspector_right">Right</string>
+    <string name="debug_inspector_bottom">Bottom</string>
+    <string name="debug_inspector_select_view">Select view at this point:</string>
+    <string name="debug_inspector_gone_badge">GONE</string>
+    <string name="debug_inspector_back_stack">back: %d</string>
+    <string name="debug_inspector_no_fragment">No fragment</string>
+    <string name="debug_inspector_parent_nav">Parent</string>
+    <string name="debug_inspector_margins">Margins</string>
+    <string name="debug_inspector_elevation">Elevation</string>
+    <string name="debug_inspector_alpha">Alpha</string>
+    <string name="debug_inspector_background">Background</string>
+    <string name="debug_inspector_rotation">Rotation</string>
+    <string name="debug_inspector_scale">Scale</string>
+    <string name="debug_inspector_translation">Translation</string>
+    <string name="debug_inspector_state_flags">States</string>
+    <string name="debug_inspector_fragment">Fragment</string>
+    <string name="debug_inspector_no_fragment_owner">no fragment</string>
+    <string name="debug_inspector_copied">Copied: %s</string>
+    <string name="debug_inspector_long_press_hint">Long press for deepest view</string>
+
+    <!-- Menu items -->
+    <string name="debug_inspector_menu_show_bounds">Show All Bounds</string>
+    <string name="debug_inspector_menu_ruler">Ruler</string>
+    <string name="debug_inspector_menu_compare">Compare Views</string>
+
+    <!-- Search -->
+    <string name="debug_inspector_search_hint">Search by ID, class, or text</string>
+    <string name="debug_inspector_search_results">%d results</string>
+
+    <!-- Ruler -->
+    <string name="debug_inspector_ruler_tap_first">Tap first point</string>
+    <string name="debug_inspector_ruler_tap_second">Tap second point</string>
+
+    <!-- Compare -->
+    <string name="debug_inspector_compare_select_a">Tap first view to compare</string>
+    <string name="debug_inspector_compare_select_b">Tap second view to compare</string>
+    <string name="debug_inspector_compare_title">View Comparison</string>
+
+    <!-- Shake -->
+    <string name="debug_inspector_shake_activated">Inspector menu toggled</string>
+
+    <!-- Hierarchy zoom controls -->
+    <string name="debug_inspector_zoom_fit">Fit</string>
+
+    <!-- Property editor -->
+    <string name="debug_inspector_apply">Apply</string>
+    <string name="debug_inspector_cancel">Cancel</string>
+    <string name="debug_inspector_char_count">%d chars</string>
+    <string name="debug_inspector_live_preview">Live preview</string>
+    <string name="debug_inspector_start">Start</string>
+    <string name="debug_inspector_end">End</string>
+    <string name="debug_inspector_dp_unit">dp</string>
+    <string name="debug_inspector_edit_text_hint">Enter new text…</string>
+
+    <!-- Floating menu -->
+    <string name="debug_inspector_menu_inspect">View Inspector</string>
+    <string name="debug_inspector_menu_bug_report">Bug Report</string>
+    <string name="debug_inspector_menu_design_overlay">Design Overlay</string>
+
+    <!-- Design overlay -->
+    <string name="debug_inspector_overlay_title">Design Overlay</string>
+    <string name="debug_inspector_overlay_pick_gallery">Pick from Gallery</string>
+    <string name="debug_inspector_overlay_paste_url">Or paste image URL</string>
+    <string name="debug_inspector_overlay_load">Load</string>
+    <string name="debug_inspector_overlay_opacity">Opacity</string>
+    <string name="debug_inspector_overlay_mode_opacity">Opacity</string>
+    <string name="debug_inspector_overlay_mode_slider">Slider</string>
+    <string name="debug_inspector_overlay_mode_flicker">Flicker</string>
+    <string name="debug_inspector_overlay_mode_diff">Pixel Diff</string>
+    <string name="debug_inspector_overlay_loading">Loading image…</string>
+    <string name="debug_inspector_overlay_error">Failed to load image</string>
+
+    <!-- Accessibility content descriptions -->
+    <string name="debug_inspector_cd_fab">Debug Inspector Menu</string>
+    <string name="debug_inspector_cd_expand">Expand</string>
+    <string name="debug_inspector_cd_collapse">Collapse</string>
+    <string name="debug_inspector_cd_close">Close</string>
+    <string name="debug_inspector_cd_share">Share report</string>
+    <string name="debug_inspector_cd_copy">Copy report</string>
+    <string name="debug_inspector_cd_grid">Toggle grid</string>
+    <string name="debug_inspector_cd_zoom_in">Zoom in</string>
+    <string name="debug_inspector_cd_zoom_out">Zoom out</string>
+    <string name="debug_inspector_cd_zoom_fit">Fit to screen</string>
+    <string name="debug_inspector_cd_parent_nav">Navigate to parent</string>
+    <string name="debug_inspector_cd_gallery">Pick from gallery</string>
+</resources>

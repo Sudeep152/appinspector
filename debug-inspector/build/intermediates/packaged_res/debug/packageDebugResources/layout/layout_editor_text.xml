@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minHeight="@dimen/debug_inspector_editor_min_height"
+    android:orientation="vertical"
+    android:background="@drawable/bg_bottom_sheet">
+
+    <!-- Drag handle -->
+    <View
+        android:layout_width="36dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:background="@color/debug_inspector_divider" />
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/di_editor_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
+        android:paddingBottom="12dp"
+        android:textColor="@color/debug_inspector_text_primary"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        tools:text="Edit Text" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/debug_inspector_divider" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp">
+
+            <EditText
+                android:id="@+id/di_editor_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="100dp"
+                android:background="@drawable/bg_editor_input"
+                android:gravity="top|start"
+                android:hint="@string/debug_inspector_edit_text_hint"
+                android:inputType="textMultiLine|textCapSentences"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="10dp"
+                android:textColor="@color/debug_inspector_text_primary"
+                android:textColorHint="@color/debug_inspector_text_label"
+                android:textSize="15sp"
+                tools:text="Hello World" />
+
+            <TextView
+                android:id="@+id/di_editor_char_count"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:gravity="end"
+                android:textColor="@color/debug_inspector_text_secondary"
+                android:textSize="11sp"
+                tools:text="11 chars" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/debug_inspector_divider" />
+
+    <LinearLayout
+        android:id="@+id/di_editor_action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp">
+
+        <TextView
+            android:id="@+id/di_editor_btn_cancel"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_action_btn"
+            android:gravity="center"
+            android:text="@string/debug_inspector_cancel"
+            android:textColor="@color/debug_inspector_primary"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/di_editor_btn_apply"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_apply_btn"
+            android:gravity="center"
+            android:text="@string/debug_inspector_apply"
+            android:textColor="@color/debug_inspector_apply_btn_text"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</LinearLayout>

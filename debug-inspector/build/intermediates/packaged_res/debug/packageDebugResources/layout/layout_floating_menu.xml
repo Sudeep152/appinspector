@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/debug_inspector_menu_width"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_menu_popup"
+    android:elevation="@dimen/debug_inspector_menu_elevation"
+    android:orientation="vertical"
+    android:paddingVertical="6dp">
+
+    <!-- View Inspector -->
+    <LinearLayout
+        android:id="@+id/di_menu_inspect"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/debug_inspector_menu_item_height"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="14dp">
+
+        <ImageView
+            android:id="@+id/di_menu_inspect_icon"
+            android:layout_width="@dimen/debug_inspector_menu_icon_size"
+            android:layout_height="@dimen/debug_inspector_menu_icon_size"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_inspect" />
+
+        <TextView
+            android:id="@+id/di_menu_inspect_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:text="@string/debug_inspector_menu_inspect"
+            android:textColor="@color/debug_inspector_text_primary"
+            android:textSize="14sp" />
+
+        <View
+            android:id="@+id/di_menu_inspect_dot"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:background="@drawable/bg_color_chip"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="12dp"
+        android:background="@color/debug_inspector_divider" />
+
+    <!-- Show All Bounds -->
+    <LinearLayout
+        android:id="@+id/di_menu_bounds"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/debug_inspector_menu_item_height"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="14dp">
+
+        <ImageView
+            android:id="@+id/di_menu_bounds_icon"
+            android:layout_width="@dimen/debug_inspector_menu_icon_size"
+            android:layout_height="@dimen/debug_inspector_menu_icon_size"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_show_bounds" />
+
+        <TextView
+            android:id="@+id/di_menu_bounds_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:text="@string/debug_inspector_menu_show_bounds"
+            android:textColor="@color/debug_inspector_text_primary"
+            android:textSize="14sp" />
+
+        <View
+            android:id="@+id/di_menu_bounds_dot"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:background="@drawable/bg_color_chip"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="12dp"
+        android:background="@color/debug_inspector_divider" />
+
+    <!-- Ruler -->
+    <LinearLayout
+        android:id="@+id/di_menu_ruler"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/debug_inspector_menu_item_height"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="14dp">
+
+        <ImageView
+            android:id="@+id/di_menu_ruler_icon"
+            android:layout_width="@dimen/debug_inspector_menu_icon_size"
+            android:layout_height="@dimen/debug_inspector_menu_icon_size"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_ruler" />
+
+        <TextView
+            android:id="@+id/di_menu_ruler_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:text="@string/debug_inspector_menu_ruler"
+            android:textColor="@color/debug_inspector_text_primary"
+            android:textSize="14sp" />
+
+        <View
+            android:id="@+id/di_menu_ruler_dot"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:background="@drawable/bg_color_chip"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <!-- Thick divider between inspector tools and design overlay -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_marginVertical="2dp"
+        android:background="@color/debug_inspector_divider" />
+
+    <!-- Design Overlay -->
+    <LinearLayout
+        android:id="@+id/di_menu_design_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/debug_inspector_menu_item_height"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="14dp">
+
+        <ImageView
+            android:id="@+id/di_menu_overlay_icon"
+            android:layout_width="@dimen/debug_inspector_menu_icon_size"
+            android:layout_height="@dimen/debug_inspector_menu_icon_size"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_design_overlay" />
+
+        <TextView
+            android:id="@+id/di_menu_overlay_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:text="@string/debug_inspector_menu_design_overlay"
+            android:textColor="@color/debug_inspector_text_primary"
+            android:textSize="14sp" />
+
+        <View
+            android:id="@+id/di_menu_overlay_dot"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:background="@drawable/bg_color_chip"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_bottom_sheet"
+    android:clipToPadding="false"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Activity / Fragment Context Banner -->
+        <LinearLayout
+            android:id="@+id/di_context_banner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_context_banner"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="12dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:id="@+id/di_context_path"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/debug_inspector_context_banner_text"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                tools:text="HomeActivity  ›  HomeFragment" />
+
+            <TextView
+                android:id="@+id/di_context_backstack"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:textColor="@color/debug_inspector_context_banner_subtext"
+                android:textSize="11sp"
+                tools:text="back: 2" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/debug_inspector_sheet_padding">
+
+            <!-- Drag Handle -->
+            <View
+                android:layout_width="36dp"
+                android:layout_height="4dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="14dp"
+                android:background="@color/debug_inspector_divider" />
+
+            <!-- Title row: class chip + name + Parent btn -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:id="@+id/di_title_type_chip"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:background="@drawable/bg_color_chip" />
+
+                <TextView
+                    android:id="@+id/di_class_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/debug_inspector_text_primary"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    tools:text="TextView" />
+
+                <TextView
+                    android:id="@+id/di_btn_parent_nav"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/bg_action_btn"
+                    android:gravity="center"
+                    android:paddingHorizontal="12dp"
+                    android:text="@string/debug_inspector_parent_nav"
+                    android:textColor="@color/debug_inspector_primary"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Info Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/bg_info_row"
+                android:orientation="vertical"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="10dp">
+
+                <!-- ID -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="72dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/debug_inspector_id"
+                        android:textColor="@color/debug_inspector_text_label"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/di_id_value"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="monospace"
+                        android:textColor="@color/debug_inspector_primary"
+                        android:textSize="12sp"
+                        tools:text="@id/title_text" />
+                </LinearLayout>
+
+                <!-- Size -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="72dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/debug_inspector_size"
+                        android:textColor="@color/debug_inspector_text_label"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/di_size_value"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/debug_inspector_text_primary"
+                        android:textSize="12sp"
+                        tools:text="360 × 48 dp" />
+                </LinearLayout>
+
+                <!-- Position -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="72dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/debug_inspector_position"
+                        android:textColor="@color/debug_inspector_text_label"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/di_position_value"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/debug_inspector_text_primary"
+                        android:textSize="12sp"
+                        tools:text="(24, 156)" />
+                </LinearLayout>
+
+                <!-- Visibility -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="72dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/debug_inspector_visibility"
+                        android:textColor="@color/debug_inspector_text_label"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/di_visibility_value"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/debug_inspector_text_primary"
+                        android:textSize="12sp"
+                        tools:text="VISIBLE" />
+
+                    <TextView
+                        android:id="@+id/di_btn_toggle_visibility"
+                        android:layout_width="wrap_content"
+                        android:layout_height="28dp"
+                        android:background="@drawable/bg_action_btn"
+                        android:gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:text="@string/debug_inspector_toggle_visibility"
+                        android:textColor="@color/debug_inspector_primary"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <!-- Margins -->
+                <LinearLayout
+                    android:id="@+id/di_margins_row"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+                    <TextView
+                        android:layout_width="72dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/debug_inspector_margins"
+                        android:textColor="@color/debug_inspector_text_label"
+                        android:textSize="12sp" />
+                    <TextView
+                        android:id="@+id/di_margins_value"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/debug_inspector_text_primary"
+                        android:textSize="12sp"
+                        tools:text="16, 8, 16, 0 dp" />
+                </LinearLayout>
+
+                <!-- Elevation -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="72dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/debug_inspector_elevation"
+                        android:textColor="@color/debug_inspector_text_label"
+                        android:textSize="12sp" />
+                    <TextView
+                        android:id="@+id/di_elevation_value"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/debug_inspector_text_primary"
+                        android:textSize="12sp"
+                        tools:text="4dp" />
+                </LinearLayout>
+
+                <!-- Alpha -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="72dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/debug_inspector_alpha"
+                        android:textColor="@color/debug_inspector_text_label"
+                        android:textSize="12sp" />
+                    <TextView
+                        android:id="@+id/di_alpha_value"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/debug_inspector_text_primary"
+                        android:textSize="12sp"
+                        tools:text="1.00" />
+                </LinearLayout>
+
+                <!-- Background -->
+                <LinearLayout
+                    android:id="@+id/di_bg_row"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+                    <TextView
+                        android:layout_width="72dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/debug_inspector_background"
+                        android:textColor="@color/debug_inspector_text_label"
+                        android:textSize="12sp" />
+                    <TextView
+                        android:id="@+id/di_bg_value"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="monospace"
+                        android:textColor="@color/debug_inspector_text_primary"
+                        android:textSize="12sp"
+                        tools:text="#FFFFFFFF" />
+                </LinearLayout>
+
+                <!-- Rotation -->
+                <LinearLayout
+                    android:id="@+id/di_rotation_row"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+                    <TextView
+                        android:layout_width="72dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/debug_inspector_rotation"
+                        android:textColor="@color/debug_inspector_text_label"
+                        android:textSize="12sp" />
+                    <TextView
+                        android:id="@+id/di_rotation_value"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/debug_inspector_text_primary"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <!-- Scale -->
+                <LinearLayout
+                    android:id="@+id/di_scale_row"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+                    <TextView
+                        android:layout_width="72dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/debug_inspector_scale"
+                        android:textColor="@color/debug_inspector_text_label"
+                        android:textSize="12sp" />
+                    <TextView
+                        android:id="@+id/di_scale_value"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/debug_inspector_text_primary"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <!-- State flags -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="72dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/debug_inspector_state_flags"
+                        android:textColor="@color/debug_inspector_text_label"
+                        android:textSize="12sp" />
+                    <TextView
+                        android:id="@+id/di_state_flags_value"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/debug_inspector_text_secondary"
+                        android:textSize="12sp"
+                        tools:text="clickable, focusable" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Fragment Ownership Row -->
+            <LinearLayout
+                android:id="@+id/di_fragment_row"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/bg_info_row"
+                android:orientation="horizontal"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="10dp"
+                android:visibility="gone"
+                tools:visibility="visible">
+                <TextView
+                    android:layout_width="72dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/debug_inspector_fragment"
+                    android:textColor="@color/debug_inspector_text_label"
+                    android:textSize="12sp" />
+                <TextView
+                    android:id="@+id/di_fragment_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/debug_inspector_type_compose"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    tools:text="CartFragment" />
+            </LinearLayout>
+
+            <!-- Text Row -->
+            <LinearLayout
+                android:id="@+id/di_text_row"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/bg_info_row"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="10dp"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <TextView
+                    android:layout_width="72dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/debug_inspector_text"
+                    android:textColor="@color/debug_inspector_text_label"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/di_text_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:textColor="@color/debug_inspector_text_primary"
+                    android:textSize="12sp"
+                    tools:text="Hello World" />
+
+                <TextView
+                    android:id="@+id/di_btn_edit_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="28dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/bg_action_btn"
+                    android:gravity="center"
+                    android:paddingHorizontal="10dp"
+                    android:text="@string/debug_inspector_edit_text"
+                    android:textColor="@color/debug_inspector_primary"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <!-- Padding Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/bg_info_row"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="10dp">
+
+                <TextView
+                    android:layout_width="72dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/debug_inspector_padding"
+                    android:textColor="@color/debug_inspector_text_label"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/di_padding_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/debug_inspector_text_primary"
+                    android:textSize="12sp"
+                    tools:text="16, 8, 16, 8 dp" />
+
+                <TextView
+                    android:id="@+id/di_btn_edit_padding"
+                    android:layout_width="wrap_content"
+                    android:layout_height="28dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/bg_action_btn"
+                    android:gravity="center"
+                    android:paddingHorizontal="10dp"
+                    android:text="@string/debug_inspector_edit_padding"
+                    android:textColor="@color/debug_inspector_primary"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <!-- Compose Tag Row -->
+            <LinearLayout
+                android:id="@+id/di_compose_row"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/bg_info_row"
+                android:orientation="horizontal"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="10dp"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <TextView
+                    android:layout_width="72dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/debug_inspector_compose_tag"
+                    android:textColor="@color/debug_inspector_text_label"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/di_compose_tag_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/debug_inspector_type_compose"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    tools:text="HomeScreen.Header" />
+            </LinearLayout>
+
+            <!-- Parent chain -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="@string/debug_inspector_parent"
+                android:textColor="@color/debug_inspector_text_label"
+                android:textSize="11sp"
+                android:textAllCaps="true"
+                android:letterSpacing="0.05" />
+
+            <TextView
+                android:id="@+id/di_parent_chain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/bg_info_row"
+                android:fontFamily="monospace"
+                android:lineSpacingExtra="4dp"
+                android:padding="12dp"
+                android:textColor="@color/debug_inspector_text_secondary"
+                android:textSize="11sp"
+                tools:text="→ LinearLayout\n  → FrameLayout" />
+
+            <!-- Action button: View Hierarchy -->
+            <TextView
+                android:id="@+id/di_btn_hierarchy"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/bg_action_btn"
+                android:gravity="center"
+                android:text="@string/debug_inspector_hierarchy"
+                android:textColor="@color/debug_inspector_primary"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
