@@ -43,7 +43,7 @@ afterEvaluate {
                 from(components["release"])
                 groupId = "com.github.Sudeep152"
                 artifactId = "appinspector"
-                version = "1.0.0"
+                version = "1.0.1"
             }
         }
     }

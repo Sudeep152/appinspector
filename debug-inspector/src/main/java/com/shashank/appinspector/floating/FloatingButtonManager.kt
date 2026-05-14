@@ -185,8 +185,9 @@ internal class FloatingButtonManager(private val config: DebugConfig) {
                 if (node != null) {
                     state.highlightOverlay.highlightScreenRect(node.boundsInScreen)
                     state.bottomSheet.showNodeInfo(node)
+                    return
                 }
-                return
+                // Compose tree inspection failed — fall through to view-based inspection
             }
 
             val allViews = ViewFinder.findAllViewsAt(contentRoot, screenX, screenY)
@@ -213,8 +214,11 @@ internal class FloatingButtonManager(private val config: DebugConfig) {
                 if (node != null) {
                     state.highlightOverlay.highlightScreenRect(node.boundsInScreen)
                     state.bottomSheet.showNodeInfo(node)
+                    return
                 }
-            } else if (deepView != null) {
+                // Compose tree inspection failed — fall through to view-based inspection
+            }
+            if (deepView != null) {
                 state.highlightOverlay.highlightView(deepView, isLongPress = true)
                 state.bottomSheet.show(deepView)
             }
@@ -277,9 +281,9 @@ internal class FloatingButtonManager(private val config: DebugConfig) {
             val decorView = state.activityRef.get()?.window?.decorView ?: return
             val root = (decorView as? ViewGroup)?.getChildAt(0) ?: decorView
             val composeView = AccessibilityNodeInspector.findComposeViewIn(root)
-            if (composeView != null) {
-                val nodes = AccessibilityNodeInspector.getAllNodes(composeView)
-                state.boundsOverlay.showAccessibilityBounds(nodes)
+            val composeNodes = if (composeView != null) AccessibilityNodeInspector.getAllNodes(composeView) else emptyList()
+            if (composeNodes.isNotEmpty()) {
+                state.boundsOverlay.showAccessibilityBounds(composeNodes)
             } else {
                 state.boundsOverlay.scanViews(root)
             }
